@@ -1,0 +1,3 @@
+!_Declare_and_assign_a_number!
+int number ;
+number = 9 ;
