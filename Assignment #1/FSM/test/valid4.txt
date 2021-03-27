@@ -1,0 +1,31 @@
+! Example Program: Prints 1 to 10 !
+! Note: this program can run just by removing the comments enclosed with exclamatory marks !
+! as the C++ language does not recognize it as a valid comment token !
+
+#include <iostream>
+
+using namespace std;
+
+bool isValid(int& i !variable i is passed by reference! ){
+    if (i < 10){
+        i++;
+        return True;
+    }
+    else
+      return False;
+}
+
+int calcTotal(float t){
+    static int i = 0;
+    while (isValid(i)) {
+        t = t+0.5;
+    }
+    return t;
+}
+
+int main(){
+   float total=.0;
+   cout << (calcTotal(total)); !should return 5!
+
+   return 0;
+}

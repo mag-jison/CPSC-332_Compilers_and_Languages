@@ -1,0 +1,14 @@
+! Does not print because of errors below !
+! Remove Lines 4, 5, 6, and 8 to fix the code !
+
+   int 3var = 10; 4f = 3;
+   float v = 5..0;
+   $moneymoneymoney$$$
+   execute(_Virus());
+
+!Solution!
+
+   int var = 10;
+   float v = 5.0;
+   moneymoneymoney$$$
+   execute(Virus());

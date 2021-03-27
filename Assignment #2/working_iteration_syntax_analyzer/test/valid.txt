@@ -1,0 +1,13 @@
+! Declaration !
+bool o
+int i
+float 5.0
+
+! Assignment + Expression !
+x=a + b
+a = b*c
+b = b - c
+a = ((b * a) + (a*(b+a)/a))
+
+! Expression !
+((a + b) * c) + d
