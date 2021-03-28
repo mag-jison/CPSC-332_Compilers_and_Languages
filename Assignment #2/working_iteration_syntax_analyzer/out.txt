@@ -1,0 +1,501 @@
+Token: KEYWORD
+Lexeme: bool
+----------------
+	<S> -> <D>
+	<D> -> <TY> <ID>
+	<TY> -> bool
+
+Token: IDENTIFIER
+Lexeme: id
+----------------
+	<ID> -> id
+
+	***ACCEPTED*** => bool id 
+
+Token: KEYWORD
+Lexeme: int
+----------------
+	<S> -> <D>
+	<D> -> <TY> <ID>
+	<TY> -> int
+
+Token: IDENTIFIER
+Lexeme: i
+----------------
+	<ID> -> i
+
+	***ACCEPTED*** => int i 
+
+Token: KEYWORD
+Lexeme: float
+----------------
+	<S> -> <D>
+	<D> -> <TY> <ID>
+	<TY> -> float
+
+Token: IDENTIFIER
+Lexeme: f_value
+----------------
+	<ID> -> f_value
+
+	***ACCEPTED*** => float f_value 
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+	<S> -> <A>
+	<A> -> <ID> = <E>
+	<ID> -> x
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> a
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+
+Token: OPERATOR
+Lexeme: +
+----------------
+	<Q> -> + <T> <Q> | epsilon
+
+Token: IDENTIFIER
+Lexeme: b
+----------------
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> b
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+	***ACCEPTED*** => x = a + b 
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+	<S> -> <A>
+	<A> -> <ID> = <E>
+	<ID> -> a
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: b
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> b
+	jmp -> <R>
+
+Token: OPERATOR
+Lexeme: *
+----------------
+	<R> -> * <F> <R> | e
+
+Token: IDENTIFIER
+Lexeme: c
+----------------
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> c
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+	***ACCEPTED*** => a = b * c 
+
+Token: IDENTIFIER
+Lexeme: b
+----------------
+	<S> -> <A>
+	<A> -> <ID> = <E>
+	<ID> -> b
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: b
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> b
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+
+Token: OPERATOR
+Lexeme: -
+----------------
+	<Q> -> - <T> <Q> | epsilon
+
+Token: IDENTIFIER
+Lexeme: c
+----------------
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> c
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+	***ACCEPTED*** => b = b - c 
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+	<S> -> <A>
+	<A> -> <ID> = <E>
+	<ID> -> a
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> ( <E>
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> ( <E>
+
+Token: IDENTIFIER
+Lexeme: b
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> b
+	jmp -> <R>
+
+Token: OPERATOR
+Lexeme: *
+----------------
+	<R> -> * <F> <R> | e
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> a
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+	<F> -> ( <E> )
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+
+Token: OPERATOR
+Lexeme: +
+----------------
+	<Q> -> + <T> <Q> | epsilon
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> ( <E>
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> a
+	jmp -> <R>
+
+Token: OPERATOR
+Lexeme: *
+----------------
+	<R> -> * <F> <R> | e
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+	jmp -> <F>
+	<F> -> ( <E>
+
+Token: IDENTIFIER
+Lexeme: b
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> b
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+
+Token: OPERATOR
+Lexeme: +
+----------------
+	<Q> -> + <T> <Q> | epsilon
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> a
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+	<F> -> ( <E> )
+	jmp -> <R>
+
+Token: OPERATOR
+Lexeme: /
+----------------
+	<R> -> / <F> <R> | e
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> a
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+	<F> -> ( <E> )
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+	<F> -> ( <E> )
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+	***ACCEPTED*** => a = ( ( b * a ) + ( a * ( b + a ) / a ) ) 
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> ( <E>
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> ( <E>
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> a
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+
+Token: OPERATOR
+Lexeme: +
+----------------
+	<Q> -> + <T> <Q> | epsilon
+
+Token: IDENTIFIER
+Lexeme: b
+----------------
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> b
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+	<F> -> ( <E> )
+	jmp -> <R>
+
+Token: OPERATOR
+Lexeme: *
+----------------
+	<R> -> * <F> <R> | e
+
+Token: IDENTIFIER
+Lexeme: c
+----------------
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> c
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+	<F> -> ( <E> )
+	jmp -> <R>
+
+Token: OPERATOR
+Lexeme: /
+----------------
+	<R> -> / <F> <R> | e
+
+Token: IDENTIFIER
+Lexeme: d
+----------------
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> d
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+	***ACCEPTED*** => ( ( a + b ) * c ) / d 
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> ( <E>
+
+Token: IDENTIFIER
+Lexeme: id
+----------------
+	<E> -> <T> <Q>
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> id
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+
+Token: OPERATOR
+Lexeme: +
+----------------
+	<Q> -> + <T> <Q> | epsilon
+
+Token: IDENTIFIER
+Lexeme: id
+----------------
+	jmp -> <T>
+	<T> -> <F> <R>
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> id
+	jmp -> <R>
+
+Token: OPERATOR
+Lexeme: /
+----------------
+	<R> -> / <F> <R> | e
+
+Token: IDENTIFIER
+Lexeme: id
+----------------
+	jmp -> <F>
+	<F> -> <ID>
+	<ID> -> id
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+	<F> -> ( <E> )
+	jmp -> <R>
+	<R> -> epsilon
+	jmp -> <Q>
+	<Q> -> epsilon
+
+	***ACCEPTED*** => ( id + id / id ) 
+
