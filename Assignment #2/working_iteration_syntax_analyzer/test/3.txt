@@ -1,0 +1,6 @@
+! Multiple Declaration Grammar !
+
+int a, b, c
+int x, y
+bool on, off, switch;
+float dec, pi, imag;
