@@ -1,0 +1,94 @@
+
+Token: KEYWORD
+Lexeme: while
+----------------
+<S> -> <WHILE>
+<WHILE> -> while <C> do <S> whileend
+<C> -> <E> <B>
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID>
+<ID> -> a
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <RELOP> <E>
+<RELOP> -> >
+
+Token: REAL
+Lexeme: 5.5
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <NUM>
+<NUM> -> 5.5
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: KEYWORD
+Lexeme: if
+----------------
+<S> -> <IF>
+<IF> -> if <C> then <S> else <S> endif
+<C> -> <E> <B>
+
+Token: IDENTIFIER
+Lexeme: b
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID>
+<ID> -> b
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <RELOP> <E>
+<RELOP> -> >
+
+Token: INTEGER
+Lexeme: 2
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <NUM>
+<NUM> -> 2
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+<S> -> <A>
+<A> -> <ID> = <E>
+<ID> -> a
+
+Token: IDENTIFIER
+Lexeme: b
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID>
+<ID> -> b
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+<S> -> <A>
+<A> -> <ID> = <E>
+<ID> -> a
+
+Token: IDENTIFIER
+Lexeme: c
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID>
+<ID> -> c
+<R> -> <empty>
+<Q> -> <empty>
+
+***ACCEPTED***

@@ -1,0 +1,694 @@
++--START--+
+
+Token: KEYWORD
+Lexeme: int
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<ID> -> x
+
+Token: SEPARATOR
+Lexeme: ,
+----------------
+<MORE_IDS> -> , <ID> <MORE_IDS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: y
+----------------
+<ID> -> y
+
+Token: SEPARATOR
+Lexeme: ,
+----------------
+<MORE_IDS> -> , <ID> <MORE_IDS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: z
+----------------
+<ID> -> z
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => int x , y , z ; 
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> x
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: INTEGER
+Lexeme: 5
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 5
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => x = 5 ; 
+
+Token: IDENTIFIER
+Lexeme: y
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> y
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: INTEGER
+Lexeme: 10
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 10
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => y = 10 ; 
+
+Token: IDENTIFIER
+Lexeme: z
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> z
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: INTEGER
+Lexeme: 100
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 100
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => z = 100 ; 
+
+Token: IDENTIFIER
+Lexeme: begin
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<BEGIN> -> begin <S> <MS> end
+
+Token: KEYWORD
+Lexeme: if
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<IF> -> if <C> then <S> else <S> endif
+<C> -> <E> <B>
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> x
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <RELOP> <E> | <empty>
+
+Token: OPERATOR
+Lexeme: >
+----------------
+<RELOP> -> < | <= | == | <> | >= | >
+
+Token: IDENTIFIER
+Lexeme: y
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> y
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: KEYWORD
+Lexeme: then
+----------------
+
+Token: KEYWORD
+Lexeme: if
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<IF> -> if <C> then <S> else <S> endif
+<C> -> <E> <B>
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> x
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <RELOP> <E> | <empty>
+
+Token: OPERATOR
+Lexeme: >
+----------------
+<RELOP> -> < | <= | == | <> | >= | >
+
+Token: IDENTIFIER
+Lexeme: z
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> z
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: KEYWORD
+Lexeme: then
+----------------
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> x
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E>
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E>
+
+Token: IDENTIFIER
+Lexeme: y
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> y
+
+Token: OPERATOR
+Lexeme: *
+----------------
+<R> -> * <F> <R> | / <F> <R> | <empty>
+
+Token: IDENTIFIER
+Lexeme: z
+----------------
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> z
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> ( <E> )
+<R> -> <empty>
+
+Token: OPERATOR
+Lexeme: +
+----------------
+<Q> -> + <T> <Q> | - <T> <Q> | <empty>
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E>
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> x
+
+Token: OPERATOR
+Lexeme: *
+----------------
+<R> -> * <F> <R> | / <F> <R> | <empty>
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E>
+
+Token: IDENTIFIER
+Lexeme: y
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> y
+<R> -> <empty>
+
+Token: OPERATOR
+Lexeme: +
+----------------
+<Q> -> + <T> <Q> | - <T> <Q> | <empty>
+
+Token: IDENTIFIER
+Lexeme: z
+----------------
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> z
+<R> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> ( <E> )
+
+Token: OPERATOR
+Lexeme: /
+----------------
+<R> -> * <F> <R> | / <F> <R> | <empty>
+
+Token: IDENTIFIER
+Lexeme: y
+----------------
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> y
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> ( <E> )
+<R> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> ( <E> )
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: KEYWORD
+Lexeme: else
+----------------
+
+Token: IDENTIFIER
+Lexeme: y
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> y
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E>
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E>
+
+Token: IDENTIFIER
+Lexeme: y
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> y
+<R> -> <empty>
+
+Token: OPERATOR
+Lexeme: +
+----------------
+<Q> -> + <T> <Q> | - <T> <Q> | <empty>
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> x
+<R> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> ( <E> )
+
+Token: OPERATOR
+Lexeme: *
+----------------
+<R> -> * <F> <R> | / <F> <R> | <empty>
+
+Token: IDENTIFIER
+Lexeme: y
+----------------
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> y
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> ( <E> )
+
+Token: OPERATOR
+Lexeme: /
+----------------
+<R> -> * <F> <R> | / <F> <R> | <empty>
+
+Token: IDENTIFIER
+Lexeme: z
+----------------
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> z
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: KEYWORD
+Lexeme: endif
+----------------
+
+Token: KEYWORD
+Lexeme: else
+----------------
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> x
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: INTEGER
+Lexeme: 0
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 0
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: KEYWORD
+Lexeme: endif
+----------------
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+<MS> -> ; <S> <MS> | <empty>
+
+Token: KEYWORD
+Lexeme: while
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<WHILE> -> while <C> do <S> whileend
+<C> -> <E> <B>
+
+Token: IDENTIFIER
+Lexeme: i
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> i
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <RELOP> <E> | <empty>
+
+Token: OPERATOR
+Lexeme: <
+----------------
+<RELOP> -> < | <= | == | <> | >= | >
+
+Token: INTEGER
+Lexeme: 10
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 10
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: KEYWORD
+Lexeme: do
+----------------
+
+Token: IDENTIFIER
+Lexeme: begin
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<BEGIN> -> begin <S> <MS> end
+
+Token: KEYWORD
+Lexeme: if
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<IF> -> if <C> then <S> else <S> endif
+<C> -> <E> <B>
+
+Token: IDENTIFIER
+Lexeme: i
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> i
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <RELOP> <E> | <empty>
+
+Token: OPERATOR
+Lexeme: >
+----------------
+<RELOP> -> < | <= | == | <> | >= | >
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> x
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: KEYWORD
+Lexeme: then
+----------------
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> x
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> x
+<R> -> <empty>
+
+Token: OPERATOR
+Lexeme: +
+----------------
+<Q> -> + <T> <Q> | - <T> <Q> | <empty>
+
+Token: IDENTIFIER
+Lexeme: y
+----------------
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> y
+<R> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: KEYWORD
+Lexeme: else
+----------------
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> x
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: x
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> x
+<R> -> <empty>
+
+Token: OPERATOR
+Lexeme: -
+----------------
+<Q> -> + <T> <Q> | - <T> <Q> | <empty>
+
+Token: IDENTIFIER
+Lexeme: y
+----------------
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> y
+<R> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: KEYWORD
+Lexeme: endif
+----------------
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+<MS> -> ; <S> <MS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: i
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> i
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: i
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> i
+<R> -> <empty>
+
+Token: OPERATOR
+Lexeme: +
+----------------
+<Q> -> + <T> <Q> | - <T> <Q> | <empty>
+
+Token: INTEGER
+Lexeme: 1
+----------------
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 1
+<R> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: end
+----------------
+
+Token: KEYWORD
+Lexeme: whileend
+----------------
+
+Token: IDENTIFIER
+Lexeme: end
+----------------
+
+***ACCEPTED*** => begin if x > y then if x > z then x = ( ( y * z ) + ( x * ( y + z ) / y ) ) ; else y = ( ( y + x ) * y ) / z ; endif else x = 0 ; endif ; while i < 10 do begin if i > x then x = x + y ; else x = x - y ; endif ; i = i + 1 ; end whileend end 
+
++--FINISH--+
