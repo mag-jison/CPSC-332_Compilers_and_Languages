@@ -1,5 +1,0 @@
-if (on) then
-   on = true
-otherwise
-   on = false;
-endif
