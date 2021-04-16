@@ -1,0 +1,31 @@
+! If-While Statements !
+
+int x, y, z; ! multiple declaration of variables !
+
+x = 5;	! initialization for variable x !
+y = 10;
+z = 100;
+
+begin
+	if x > y then
+		if x > z then
+			x = ((y * z) + (x*(y+z)/y));
+		else
+			y = ((y+x)*y)/z;
+		endif
+	else
+		x = 0;
+	endif;
+
+	while i < 10 do
+		begin
+			if i > x then
+				x = x + y;
+			else
+				x = x - y;
+			endif;
+
+			i = i + 1;
+		end
+	whileend
+end

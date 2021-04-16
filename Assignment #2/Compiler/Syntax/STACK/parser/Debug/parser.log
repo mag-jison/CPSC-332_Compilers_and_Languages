@@ -1,0 +1,26 @@
+﻿  main.cpp
+C:\Users\Jason\source\repos\parser\parser\Syntax\STACK\main.cpp(14,8): warning C4101: 'x': unreferenced local variable
+C:\Users\Jason\source\repos\parser\parser\Syntax\STACK\main.cpp(13,9): warning C4101: 'c': unreferenced local variable
+C:\Users\Jason\source\repos\parser\parser\Tables\tree.h(63,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Jason\source\repos\parser\parser\Tables\tree.h(61): message : while compiling class template member function 'void Tree<std::string>::insertRecursive(Node<T> *,Node<T> *)'
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Jason\source\repos\parser\parser\Tables\tree.h(53): message : see reference to function template instantiation 'void Tree<std::string>::insertRecursive(Node<T> *,Node<T> *)' being compiled
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Jason\source\repos\parser\parser\Tables\tree.h(47): message : while compiling class template member function 'void Tree<std::string>::insert(T,std::vector<std::string,std::allocator<std::string>>)'
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Jason\source\repos\parser\parser\Syntax\STACK\Stack.h(227): message : see reference to function template instantiation 'void Tree<std::string>::insert(T,std::vector<std::string,std::allocator<std::string>>)' being compiled
+          with
+          [
+              T=std::string
+          ]
+C:\Users\Jason\source\repos\parser\parser\Syntax\STACK\Stack.h(26): message : see reference to class template instantiation 'Tree<std::string>' being compiled
+  parser.vcxproj -> C:\Users\Jason\source\repos\parser\Debug\parser.exe

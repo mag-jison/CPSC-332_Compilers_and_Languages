@@ -1,0 +1,19 @@
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+<S> -> <A>
+<A> -> <ID> = <E>
+<ID> -> a
+
+Token: IDENTIFIER
+Lexeme: b
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID>
+<ID> -> b
+<R> -> <empty>
+<Q> -> <empty>
+
+***ACCEPTED***

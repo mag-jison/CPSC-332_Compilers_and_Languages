@@ -1,0 +1,23 @@
+float lights;
+bool on, off, power;
+
+on = true;
+off = false;
+power = false;
+lights = 0.0;
+
+while (on) do
+	if lights > 7.12 then
+		power = on;
+	else
+		power = off;
+	endif
+whileend
+
+begin
+	if on then
+		x = x + 45;
+	else
+		y = ((y - 54) + (x + 56));
+	endif
+end

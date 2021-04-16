@@ -1,0 +1,6 @@
+﻿  main.cpp
+C:\Users\Jason\Desktop\Compiler\Syntax\STACK\parser\Lexer\lexer.h(149,30): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
+C:\Users\Jason\Desktop\Compiler\Syntax\STACK\parser\Lexer\lexer.h(162,29): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Jason\Desktop\Compiler\Syntax\STACK\parser\Syntax\STACK\main.cpp(14,8): warning C4101: 'x': unreferenced local variable
+C:\Users\Jason\Desktop\Compiler\Syntax\STACK\parser\Syntax\STACK\main.cpp(13,9): warning C4101: 'c': unreferenced local variable
+  parser.vcxproj -> C:\Users\Jason\Desktop\Compiler\Syntax\STACK\x64\Debug\parser.exe

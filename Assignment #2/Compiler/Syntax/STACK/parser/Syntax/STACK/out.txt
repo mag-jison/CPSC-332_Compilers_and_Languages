@@ -1,0 +1,5 @@
+
+Token: IDENTIFIER
+Lexeme: a
+----------------
+<S> -> <A>
