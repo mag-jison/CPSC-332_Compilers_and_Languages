@@ -1,0 +1,15 @@
+! Declaration !
+	bool id;
+	int i, j, k;
+	float f_value;
+
+! Assignment + Expression !
+	x=a + b;
+	a = b*c;
+	b =b- c;
+	a = ((b * a) + (a*(b+a)/a));
+
+! Expression !
+	((a+b)*c)/d
+	(id + id / id)
+	a+b

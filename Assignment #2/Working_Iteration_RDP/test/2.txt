@@ -1,0 +1,13 @@
+! Assignment + Expression !
+
+	x=a + b;
+	a = b*c;
+	b =b- c;
+	a = ((b * a) + (a*(b+a)/a));
+
+! this is comment for this sample test code for the assignment operator, the ; is optional!
+
+   x=a + b;
+   z=c+ d;
+   a=e-f;
+   b=g*n;

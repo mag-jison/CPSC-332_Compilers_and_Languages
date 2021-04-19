@@ -1,0 +1,8 @@
+while a > 5.5 do
+	if b > 2 then
+		a = b
+	else
+		a = c
+	endif
+whileend
+%

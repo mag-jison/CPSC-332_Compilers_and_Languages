@@ -1,0 +1,5 @@
+if (on) then
+	switch = on;
+els
+	switch = off;
+endif

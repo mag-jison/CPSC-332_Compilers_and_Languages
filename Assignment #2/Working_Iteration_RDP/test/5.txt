@@ -1,0 +1,14 @@
+float lights;
+bool on, off;
+
+on = true;
+off = false;
+lights = 0.0;
+
+while (on) do
+	if lights > 7.12 then
+		on = off;
+	else
+		lights = (lights + 1)
+	endif
+whileend

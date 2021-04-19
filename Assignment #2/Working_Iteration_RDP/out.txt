@@ -1,0 +1,15 @@
++--START--+
+
+***ACCEPTED*** => float lights ; 
+
+***ACCEPTED*** => bool on , off ; 
+
+***ACCEPTED*** => on = true ; 
+
+***ACCEPTED*** => off = false ; 
+
+***ACCEPTED*** => lights = 0.0 ; 
+
+***ACCEPTED*** => while ( on ) do if lights > 7.12 then on = off ; else lights = ( lights + 1 ) endif whileend 
+
++--FINISH--+
