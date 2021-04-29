@@ -1,0 +1,755 @@
++--START--+
+
+Token: IDENTIFIER
+Lexeme: int
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: voltage
+----------------
+<ID> -> voltage
+
+Token: SEPARATOR
+Lexeme: ,
+----------------
+<MORE_IDS> -> , <ID> <MORE_IDS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: current
+----------------
+<ID> -> current
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => int voltage , current ; 
+
+Token: IDENTIFIER
+Lexeme: bool
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: true
+----------------
+<ID> -> true
+
+Token: SEPARATOR
+Lexeme: ,
+----------------
+<MORE_IDS> -> , <ID> <MORE_IDS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: false
+----------------
+<ID> -> false
+
+Token: SEPARATOR
+Lexeme: ,
+----------------
+<MORE_IDS> -> , <ID> <MORE_IDS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: switch
+----------------
+<ID> -> switch
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => bool true , false , switch ; 
+
+Token: IDENTIFIER
+Lexeme: float
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: lights
+----------------
+<ID> -> lights
+
+Token: SEPARATOR
+Lexeme: ,
+----------------
+<MORE_IDS> -> , <ID> <MORE_IDS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: power
+----------------
+<ID> -> power
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => float lights , power ; 
+
+Token: IDENTIFIER
+Lexeme: voltage
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> voltage
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: INTEGER
+Lexeme: 130
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 130
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => voltage = 130 ; 
+
+Token: IDENTIFIER
+Lexeme: current
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> current
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: INTEGER
+Lexeme: 0
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 0
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => current = 0 ; 
+
+Token: IDENTIFIER
+Lexeme: true
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> true
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: INTEGER
+Lexeme: 1
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 1
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => true = 1 ; 
+
+Token: IDENTIFIER
+Lexeme: false
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> false
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: INTEGER
+Lexeme: 0
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 0
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => false = 0 ; 
+
+Token: IDENTIFIER
+Lexeme: switch
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> switch
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: true
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> true
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => switch = true ; 
+
+Token: IDENTIFIER
+Lexeme: if
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<IF> -> if <C> then <S> else <S> endif
+<C> -> <E> <B>
+
+Token: IDENTIFIER
+Lexeme: power
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> power
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <RELOP> <E> | <empty>
+
+Token: OPERATOR
+Lexeme: >
+----------------
+<RELOP> -> < | <= | == | <> | >= | >
+
+Token: IDENTIFIER
+Lexeme: current
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> current
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: IDENTIFIER
+Lexeme: then
+----------------
+
+Token: IDENTIFIER
+Lexeme: switch
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> switch
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: true
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> true
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: else
+----------------
+
+Token: IDENTIFIER
+Lexeme: switch
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> switch
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: false
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> false
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: endif
+----------------
+
+***ACCEPTED*** => if power > current then switch = true ; else switch = false ; endif 
+
+Token: IDENTIFIER
+Lexeme: while
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<WHILE> -> while <C> do <S> whileend
+<C> -> <E> <B>
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E> )
+
+Token: IDENTIFIER
+Lexeme: true
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> true
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> )
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <empty>
+
+Token: IDENTIFIER
+Lexeme: do
+----------------
+
+Token: IDENTIFIER
+Lexeme: power
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> power
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: power
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> power
+<R> -> <empty>
+
+Token: OPERATOR
+Lexeme: +
+----------------
+<Q> -> + <T> <Q> | - <T> <Q> | <empty>
+
+Token: INTEGER
+Lexeme: 1
+----------------
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 1
+<R> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: whileend
+----------------
+
+***ACCEPTED*** => while ( true ) do power = power + 1 ; whileend 
+
+Token: IDENTIFIER
+Lexeme: begin
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<BEGIN> -> begin <S> <MS> end
+
+Token: IDENTIFIER
+Lexeme: while
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<WHILE> -> while <C> do <S> whileend
+<C> -> <E> <B>
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E> )
+
+Token: IDENTIFIER
+Lexeme: switch
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> switch
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> )
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <empty>
+
+Token: IDENTIFIER
+Lexeme: do
+----------------
+
+Token: IDENTIFIER
+Lexeme: if
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<IF> -> if <C> then <S> else <S> endif
+<C> -> <E> <B>
+
+Token: IDENTIFIER
+Lexeme: voltage
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> voltage
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <RELOP> <E> | <empty>
+
+Token: OPERATOR
+Lexeme: >
+----------------
+<RELOP> -> < | <= | == | <> | >= | >
+
+Token: REAL
+Lexeme: 120.0
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 120.0
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: IDENTIFIER
+Lexeme: then
+----------------
+
+Token: IDENTIFIER
+Lexeme: lights
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> lights
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: REAL
+Lexeme: 8.0
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 8.0
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: else
+----------------
+
+Token: IDENTIFIER
+Lexeme: switch
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> switch
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: false
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> false
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: endif
+----------------
+
+Token: IDENTIFIER
+Lexeme: whileend
+----------------
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+<MS> -> ; <S> <MS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: begin
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<BEGIN> -> begin <S> <MS> end
+
+Token: IDENTIFIER
+Lexeme: if
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<IF> -> if <C> then <S> else <S> endif
+<C> -> <E> <B>
+
+Token: IDENTIFIER
+Lexeme: lights
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> lights
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <RELOP> <E> | <empty>
+
+Token: OPERATOR
+Lexeme: >
+----------------
+<RELOP> -> < | <= | == | <> | >= | >
+
+Token: REAL
+Lexeme: 7.142
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 7.142
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: IDENTIFIER
+Lexeme: then
+----------------
+
+Token: IDENTIFIER
+Lexeme: power
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> power
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: voltage
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> voltage
+
+Token: OPERATOR
+Lexeme: *
+----------------
+<R> -> * <F> <R> | / <F> <R> | <empty>
+
+Token: IDENTIFIER
+Lexeme: current
+----------------
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> current
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: else
+----------------
+
+Token: IDENTIFIER
+Lexeme: power
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> power
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E> )
+
+Token: IDENTIFIER
+Lexeme: power
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> power
+<R> -> <empty>
+
+Token: OPERATOR
+Lexeme: -
+----------------
+<Q> -> + <T> <Q> | - <T> <Q> | <empty>
+
+Token: INTEGER
+Lexeme: 1
+----------------
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 1
+<R> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> )
+
+Token: OPERATOR
+Lexeme: /
+----------------
+<R> -> * <F> <R> | / <F> <R> | <empty>
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E> )
+
+Token: IDENTIFIER
+Lexeme: voltage
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> voltage
+<R> -> <empty>
+
+Token: OPERATOR
+Lexeme: -
+----------------
+<Q> -> + <T> <Q> | - <T> <Q> | <empty>
+
+Token: IDENTIFIER
+Lexeme: current
+----------------
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> current
+<R> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> )
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: endif
+----------------
+<MS> -> <empty>
+
+Token: IDENTIFIER
+Lexeme: end
+----------------
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+<MS> -> ; <S> <MS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: end
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+
+Token: IDENTIFIER
+Lexeme: end
+----------------
+
+***ACCEPTED*** => begin while ( switch ) do if voltage > 120.0 then lights = 8.0 ; else switch = false ; endif whileend ; begin if lights > 7.142 then power = voltage * current ; else power = ( power - 1 ) / ( voltage - current ) ; endif end ; end 
+
++--FINISH--+

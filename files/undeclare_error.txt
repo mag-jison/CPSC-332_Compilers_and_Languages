@@ -1,0 +1,1 @@
+alpha = sigma * ((del - rol) / beta + alpha); %
