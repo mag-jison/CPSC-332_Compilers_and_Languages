@@ -1,0 +1,29 @@
+! multiple declaration statement !
+
+int voltage, current;
+bool on, off, power;
+float lights;
+
+on = 1;
+off = 0;
+power = on;
+
+begin
+	while (power) do
+		if voltage > 120.0 then
+			lights = on;
+		else
+			power = off; 
+		endif
+	whileend;
+
+	begin
+		if lights > 7.142 then
+			current = current + 45;
+		else
+			current = ((current - 54) + (power + 56));
+		endif
+	end;
+end
+
+%

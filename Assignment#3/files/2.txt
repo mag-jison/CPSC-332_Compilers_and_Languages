@@ -1,0 +1,9 @@
+begin
+	if a > 3 then
+		a = b
+	else
+		a = c
+	endif
+end
+
+%
