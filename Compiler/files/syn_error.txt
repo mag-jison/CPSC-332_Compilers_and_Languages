@@ -1,0 +1,9 @@
+int a, b, c
+
+begin
+	if a > 3 then
+		a = b
+	otherwise
+		a = c
+	endif
+end %

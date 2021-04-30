@@ -1,0 +1,168 @@
++--START--+
+
+Token: IDENTIFIER
+Lexeme: int
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: var
+----------------
+<ID> -> var
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => int var ; 
+
+Token: IDENTIFIER
+Lexeme: bool
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: on
+----------------
+<ID> -> on
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => bool on ; 
+
+Token: IDENTIFIER
+Lexeme: alpha
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> alpha
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: sigma
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> sigma
+
+Token: OPERATOR
+Lexeme: *
+----------------
+<R> -> * <F> <R> | / <F> <R> | <empty>
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E> )
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E> )
+
+Token: IDENTIFIER
+Lexeme: del
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> del
+<R> -> <empty>
+
+Token: OPERATOR
+Lexeme: -
+----------------
+<Q> -> + <T> <Q> | - <T> <Q> | <empty>
+
+Token: IDENTIFIER
+Lexeme: rol
+----------------
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> rol
+<R> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> )
+
+Token: OPERATOR
+Lexeme: /
+----------------
+<R> -> * <F> <R> | / <F> <R> | <empty>
+
+Token: IDENTIFIER
+Lexeme: beta
+----------------
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> beta
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> )
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => alpha = sigma * ( ( del - rol ) / beta ) ; 
+
+Token: IDENTIFIER
+Lexeme: bool
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: on
+----------------
+<ID> -> on
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => bool on ; 
+
+Token: IDENTIFIER
+Lexeme: int
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: var
+----------------
+<ID> -> var
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED*** => int var ; 
+
++--FINISH--+

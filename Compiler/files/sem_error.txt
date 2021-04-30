@@ -1,0 +1,7 @@
+int var;
+bool on;
+
+alpha = sigma * ((del - rol) / beta);
+
+bool on;
+int var;
