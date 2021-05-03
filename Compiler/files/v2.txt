@@ -1,0 +1,39 @@
+! multiple declaration statement !
+
+int voltage, current;
+bool true, false, switch;
+float lights, power;
+
+voltage = 130;
+current = 0;
+true = 1;
+false = 0;
+switch = true;
+
+if power > current then
+	switch = true;
+else
+	switch = false;
+endif
+
+while (true) do
+	power = power + 1;
+whileend
+
+begin
+	while (switch) do
+		if voltage > 120.0 then
+			lights = 8.0;
+		else
+			switch = false; 
+		endif
+	whileend;
+
+	begin
+		if lights > 7.142 then
+			power = voltage*current;
+		else
+			power = (power - 1)/(voltage-current);
+		endif
+	end;
+end %
