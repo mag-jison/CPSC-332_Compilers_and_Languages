@@ -1,0 +1,15 @@
+int var, var2;
+bool on, off;
+float a, b, c;
+
+var = var2;
+on = off;
+((b + c) / (a*c));
+
+if on > off then
+    var = var2;
+else
+    on = off;
+endif
+
+%
