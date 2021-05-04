@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\..\\.."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"xlocale": "cpp",
+			"deque": "cpp",
+			"iterator": "cpp",
+			"queue": "cpp",
+			"stack": "cpp",
+			"tuple": "cpp",
+			"xmemory": "cpp",
+			"xtree": "cpp",
+			"xutility": "cpp"
+		}
+	}
+}
