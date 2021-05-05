@@ -43,9 +43,7 @@ void ErrorTable::handler(const size_t& ln, const string& w){
    string temp;
    temp += w[0];
 
-   if (empty())
-      e.push("In file: " + efile + "\n\n");
-
+   e.push("In file: " + efile + "\n\n");
    e.push("\033[91mINVALID TOKEN: \033[0m\"" + w + "\" on Line: " + to_string(ln) + "\n");
    
    for (int i = 0; i < 16; ++i)
@@ -72,8 +70,7 @@ void ErrorTable::handler(const size_t& ln, const string& w){
 }
 
 void ErrorTable::handler(const Token& p, const string& q){
-      if (empty())
-         e.push("In file: " + efile + "\n\n");
+      e.push("In file: " + efile + "\n\n");
       e.push("\033[91m");
       
       if (q == "<E>")
@@ -105,8 +102,7 @@ void ErrorTable::handler(const Token& p, const string& q){
 }
 
 void ErrorTable::handler(symbol table, const string& f, const size_t& s, const size_t& i){
-   if (empty())
-      e.push("In file: " + f + "\n\n");
+   e.push("In file: " + f + "\n\n");
    switch (i) {
       case 1:
          e.push("\033[91mINVALID DECLARATION\033[0m on line: " + to_string(line) + "\n\t-> \'" + lexeme + "\' has already been declared previously on line: " + to_string(s) + "\n");

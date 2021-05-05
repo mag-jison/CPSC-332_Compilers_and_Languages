@@ -2,7 +2,7 @@
 ! variables alpha, sigma, del, rol and beta are not defined !
 ! missing RPAREN after 'beta' !
 ! floating value 'd' is out of scope !
-! otherwise is not declared & should be replaced by 'else' !
+! otherwise is not declared and should be replaced by 'else' !
 
 int a, b, c;
 int a;

@@ -19,8 +19,6 @@ typedef vector<vector<string>> op;
 
 class LR {
 private:
-    string handle;
-
     ofstream output;
     stack<string> ss;
     vector<string> rhs;
@@ -35,8 +33,13 @@ public:
     }
 
     void copy(symbol);
+    void driver();
 };
 
 void LR::copy(symbol temp){
+
+}
+
+void LR::driver(){
 
 }

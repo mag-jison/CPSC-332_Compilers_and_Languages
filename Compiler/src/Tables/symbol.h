@@ -6,6 +6,7 @@
 #include <stack>
 #include <utility>
 #include <iomanip>
+#include <cmath>
 #include "error.h"
 
 #define token table.front().tok
@@ -22,6 +23,7 @@ class SymbolTable {
 private:
    ErrorTable e;
    symbol list;
+   vector<string> scope_res;
    Token backup;
    size_t mLoc;
 
@@ -31,6 +33,7 @@ protected:
 public:
    SymbolTable(){
       this->mLoc = 5000;
+      this->scope_res = {"GLOBAL", "INNER", "NESTED"};
    }
    
    symbol getTable();
@@ -66,17 +69,7 @@ bool SymbolTable::inScope(symbol temp, const string& l, const size_t& scope_ref)
 }
 
 string SymbolTable::getScope(const size_t& s){
-   switch(s){
-      case 0:
-         return "GLOBAL";
-         break;
-      case 1:
-         return "INNER";
-         break;
-      default:
-         return "NESTED";
-         break;
-   }
+   return (s > 2) ? scope_res[2] : scope_res[s];
 }
 
 string SymbolTable::inType(string w, string SAVE_TYPE, symbol table){

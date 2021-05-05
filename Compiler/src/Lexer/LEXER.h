@@ -178,7 +178,7 @@ void LEXER::printToken(){
    system("cls");
 
    if (empty()){
-      cout << "+------------------------------+\n" << "| TOKENS" << setw(24) << "lexS |" << "\n+------------------------------+\n";
+      cout << "+------------------------------+\n" << "| TOKENS" << setw(24) << "LEXEMES |" << "\n+------------------------------+\n";
       while (!q.empty()){
          switch (q.front().state){ 
             case 1:
