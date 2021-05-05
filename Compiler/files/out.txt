@@ -1,0 +1,565 @@
++--START--+
+
+Token: IDENTIFIER
+Lexeme: int
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: voltage
+----------------
+<ID> -> voltage
+
+Token: SEPARATOR
+Lexeme: ,
+----------------
+<MORE_IDS> -> , <ID> <MORE_IDS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: current
+----------------
+<ID> -> current
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED***
+
+Token: IDENTIFIER
+Lexeme: bool
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: true
+----------------
+<ID> -> true
+
+Token: SEPARATOR
+Lexeme: ,
+----------------
+<MORE_IDS> -> , <ID> <MORE_IDS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: false
+----------------
+<ID> -> false
+
+Token: SEPARATOR
+Lexeme: ,
+----------------
+<MORE_IDS> -> , <ID> <MORE_IDS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: switch
+----------------
+<ID> -> switch
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED***
+
+Token: IDENTIFIER
+Lexeme: float
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: lights
+----------------
+<ID> -> lights
+
+Token: SEPARATOR
+Lexeme: ,
+----------------
+<MORE_IDS> -> , <ID> <MORE_IDS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: power
+----------------
+<ID> -> power
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED***
+
+Token: IDENTIFIER
+Lexeme: voltage
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> voltage
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: INTEGER
+Lexeme: 130
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 130
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED***
+
+Token: IDENTIFIER
+Lexeme: current
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> current
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: INTEGER
+Lexeme: 0
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 0
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED***
+
+Token: IDENTIFIER
+Lexeme: true
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> true
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: INTEGER
+Lexeme: 1
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 1
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED***
+
+Token: IDENTIFIER
+Lexeme: false
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> false
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: INTEGER
+Lexeme: 0
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 0
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED***
+
+Token: IDENTIFIER
+Lexeme: switch
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> switch
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: true
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> true
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+***ACCEPTED***
+
+Token: IDENTIFIER
+Lexeme: if
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<IF> -> if <C> then <S> else <S> endif
+<C> -> <E> <B>
+
+Token: IDENTIFIER
+Lexeme: voltage
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> voltage
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <RELOP> <E> | <empty>
+
+Token: OPERATOR
+Lexeme: >
+----------------
+<RELOP> -> < | <= | == | <> | >= | >
+
+Token: IDENTIFIER
+Lexeme: current
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> current
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: IDENTIFIER
+Lexeme: then
+----------------
+
+Token: IDENTIFIER
+Lexeme: begin
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<BEGIN> -> begin <S> <MS> end
+
+Token: IDENTIFIER
+Lexeme: while
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<WHILE> -> while <C> do <S> whileend
+<C> -> <E> <B>
+
+Token: IDENTIFIER
+Lexeme: voltage
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> voltage
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <RELOP> <E> | <empty>
+
+Token: OPERATOR
+Lexeme: >
+----------------
+<RELOP> -> < | <= | == | <> | >= | >
+
+Token: INTEGER
+Lexeme: 50
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 50
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: IDENTIFIER
+Lexeme: do
+----------------
+
+Token: IDENTIFIER
+Lexeme: bool
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: temp
+----------------
+<ID> -> temp
+
+Token: SEPARATOR
+Lexeme: ,
+----------------
+<MORE_IDS> -> , <ID> <MORE_IDS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: temp2
+----------------
+<ID> -> temp2
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: whileend
+----------------
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+<MS> -> ; <S> <MS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: end
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+
+Token: IDENTIFIER
+Lexeme: end
+----------------
+
+Token: IDENTIFIER
+Lexeme: else
+----------------
+
+Token: IDENTIFIER
+Lexeme: switch
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> switch
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: false
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> false
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: endif
+----------------
+
+***ACCEPTED***
+
+Token: IDENTIFIER
+Lexeme: begin
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<BEGIN> -> begin <S> <MS> end
+
+Token: IDENTIFIER
+Lexeme: while
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<WHILE> -> while <C> do <S> whileend
+<C> -> <E> <B>
+
+Token: SEPARATOR
+Lexeme: (
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<F> -> ( <E> )
+
+Token: IDENTIFIER
+Lexeme: switch
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> switch
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> )
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <empty>
+
+Token: IDENTIFIER
+Lexeme: do
+----------------
+
+Token: IDENTIFIER
+Lexeme: if
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<IF> -> if <C> then <S> else <S> endif
+<C> -> <E> <B>
+
+Token: IDENTIFIER
+Lexeme: voltage
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> voltage
+<R> -> <empty>
+<Q> -> <empty>
+<B> -> <RELOP> <E> | <empty>
+
+Token: OPERATOR
+Lexeme: >
+----------------
+<RELOP> -> < | <= | == | <> | >= | >
+
+Token: INTEGER
+Lexeme: 120
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 120
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: IDENTIFIER
+Lexeme: then
+----------------
+
+Token: IDENTIFIER
+Lexeme: lights
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> lights
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: REAL
+Lexeme: 8.0
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 8.0
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: else
+----------------
+
+Token: IDENTIFIER
+Lexeme: switch
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<A> -> <ID> = <E> ;
+<ID> -> switch
+
+Token: OPERATOR
+Lexeme: =
+----------------
+
+Token: IDENTIFIER
+Lexeme: false
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> false
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: endif
+----------------
+
+Token: IDENTIFIER
+Lexeme: whileend
+----------------
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+<MS> -> ; <S> <MS> | <empty>
+
+Token: IDENTIFIER
+Lexeme: int
+----------------
+<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>
+<D> -> <TY> <ID> <MORE_IDS> ; | <empty>
+<TY> -> bool | int | float
+
+Token: IDENTIFIER
+Lexeme: chao_thay
+----------------
+<ID> -> chao_thay
+<MORE_IDS> -> <empty>
+
+Token: SEPARATOR
+Lexeme: ;
+----------------
+
+Token: IDENTIFIER
+Lexeme: end
+----------------
+
+***ACCEPTED***
+
++--FINISH--+
