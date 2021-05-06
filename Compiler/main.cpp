@@ -95,13 +95,14 @@ int main(){
                      prompt(3);
                }
                break;
-            case 3:
-               if (l.store() && p.parser(l.request(), true))
-                  p.viewTable();
-               break;
-            case 4:
-               system("cls");
-               break;
+               case 3:
+                  if (l.store() && p.parser(l.request(), true))
+                     p.viewTable();
+                  break;
+               case 4:
+                  if (l.store() && p.parser(l.request(), true))
+                     p.printAL();
+                  break;
             default:
                prompt(3);
          }

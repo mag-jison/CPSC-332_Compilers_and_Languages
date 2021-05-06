@@ -1,6 +1,6 @@
 int a, b, c;
 
-if a<b then
+if a < b then
 	a = c;
 else
 	a = b;

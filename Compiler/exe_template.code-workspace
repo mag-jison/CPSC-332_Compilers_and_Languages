@@ -8,7 +8,8 @@
 		"files.associations": {
 			"xstring": "cpp",
 			"queue": "cpp",
-			"iostream": "cpp"
+			"iostream": "cpp",
+			"stack": "cpp"
 		}
 	}
 }

@@ -229,5 +229,5 @@ void LEXER::reset(){
 }
 
 symbol LEXER::request(){
-   return getTable();
+   return list;
 }

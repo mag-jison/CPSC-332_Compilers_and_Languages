@@ -6,7 +6,6 @@
 #include <stack>
 #include <utility>
 #include <iomanip>
-#include <cmath>
 #include "error.h"
 
 #define token table.front().tok
@@ -53,21 +52,16 @@ public:
 
    string getScope(const size_t&);
    string getType(const string&);
-   symbol getTable();
    void getInstr(const string&, const size_t&);
 
    void insert(const symbol&, const size_t&);
    void insert(const size_t&, const string&, const string&);
 
    void sprint();
+   void aprint();
    Token find(symbol, const string&);
-   Instr& find(assembly, const size_t&);
+   Instr& find(const size_t&);
 };
-
-
-symbol SymbolTable::getTable(){
-   return list;
-}
 
 bool SymbolTable::error(){
    if (!e.empty()){
@@ -77,19 +71,10 @@ bool SymbolTable::error(){
    return false;
 }
 
-void SymbolTable::getInstr(const string& op, const size_t& mLoc){
-   code.push_back({aLoc++, op, mLoc});
-
-   static int i = 0;
-   for (i; i < code.size(); ++i){
-      cout << code[i].addr << " " << code[i].op_code << " " << code[i].mem << endl;
-   }
-}
-
-Instr& SymbolTable::find(assembly temp, const size_t& addr){
-   for (Instr& t : temp){
-      if (t.addr == addr)
-         return t;
+Instr& SymbolTable::find(const size_t& addr){
+   for (Instr& c : code){
+      if (c.addr == addr)
+         return c;
    }
 }
 
@@ -104,10 +89,6 @@ Token SymbolTable::find(symbol temp, const string& l){
 
 bool SymbolTable::inScope(const string& l, const size_t& scope_ref){
    return (find(list, l).s_ref <= scope_ref) ? true : false;
-}
-
-string SymbolTable::getScope(const size_t& s){
-   return (s > 2) ? scope_res[2] : scope_res[s];
 }
 
 string SymbolTable::inType(string w, string SAVE_TYPE, symbol table){
@@ -143,6 +124,14 @@ string SymbolTable::getType(const string& l){
    return find(list, l).typ;
 }
 
+string SymbolTable::getScope(const size_t& s){
+   return (s > 2) ? scope_res[2] : scope_res[s];
+}
+
+void SymbolTable::getInstr(const string& op, const size_t& oprnd){
+   code.push_back({aLoc++, op, oprnd});
+}
+
 bool SymbolTable::exist(symbol temp, const string& l){
    while (!temp.empty()){
       if (temp.front().lex == l){
@@ -173,8 +162,13 @@ void SymbolTable::insert(const size_t& ln, const string& tok, const string& lex)
    list.push({ln, tok, lex});
 }
 
+void SymbolTable::aprint(){
+   for (Instr c : code)
+      cout << c.addr << " " << c.op_code << " " << c.mem << endl;
+}
+
 void SymbolTable::sprint(){
-//   system("cls");
+   system("cls");
    cout << "+----------------------------------------------------------------------------------+\n";
    cout << "|   TOKENS   |   LEXEMES   |    #    |    Memory Location   |   Type   |   Scope   |\n";
    cout << "|------------|-------------|---------|----------------------|----------|-----------|\n";

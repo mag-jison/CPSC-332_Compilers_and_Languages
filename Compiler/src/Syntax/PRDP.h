@@ -51,6 +51,7 @@ public:
 
     void printRules(NONTERMINAL);
     void printRules(TERMINAL);
+    void printAL();
 
     void getTree();
     Node<string>* getRoot();
@@ -80,9 +81,8 @@ public:
 };
 
 void PRDP::backPatch(const size_t& jump_addr){
-    jump_stack.pop();
     CURR_ADDR = jump_stack.top();
-    find(code, CURR_ADDR).mem = jump_addr;
+    find(CURR_ADDR).mem = jump_addr;
 }
 
 void PRDP::getTree(){
@@ -207,6 +207,10 @@ bool PRDP::FOLLOW(NONTERMINAL n){
         default:
             return false;
     }
+}
+
+void PRDP::printAL(){
+    aprint();
 }
 
 void PRDP::printRules(TERMINAL t) {
@@ -357,11 +361,13 @@ bool PRDP::IF() {
                 lexer();
                 if (FIRST(STATE)){
                     S();
+                    backPatch(aLoc);
                     if (lexeme == "else"){
                         printRules(ELSE);
                         lexer();
                         if (FIRST(STATE)){
                             S();
+                            backPatch(aLoc);
                             if (lexeme == "endif"){
                                 CURR_SCOPE--;
                                 printRules(ENDIF); 
@@ -429,7 +435,7 @@ bool PRDP::B(){
     if (FIRST(RELA)){
         RELOP();
         printRules(RELA);
-        OP = lexeme[0];
+        OP = lexeme[0]; // gets the operator as a <char>
         lexer();
         if (FIRST(EXP)){
             printRules(id);
@@ -581,7 +587,7 @@ bool PRDP::Q(){
         if (FIRST(TERM)) {
             printRules(id);
             T();
-            getInstr("ADD", find(getTable(), save.lex).mem);
+            getInstr("ADD", 0);
             if (FIRST(EXP_PRIME)){
                 Q();
                 return true;
@@ -664,7 +670,7 @@ bool PRDP::F(){
     else if (FIRST(IDENTIFIER)){
         printRules(IDENTIFIER);
         SAVE_TYPE = inType("IDENTIFIER", SAVE_TYPE, table);
-        getInstr("PUSHM", find(getTable(), save.lex).mem);
+        getInstr("PUSHM", find(list, lexeme).mem);
         lexer();
         return true;
     }
@@ -766,7 +772,7 @@ bool PRDP::A(){
                     lexer();
                 }
                 SAVE_TYPE = "";
-                getInstr("POPM", find(getTable(), save.lex).mem); 
+                getInstr("POPM", find(list, save.lex).mem); 
                 return true;
             }
             else {
