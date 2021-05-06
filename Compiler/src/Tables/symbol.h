@@ -17,36 +17,53 @@
 
 using namespace std;
 
+struct Instr {
+   size_t addr;
+   string op_code;
+   size_t mem;
+};
+
 typedef queue<Token> symbol;
+typedef vector<Instr> assembly;
 
 class SymbolTable {
 private:
    ErrorTable e;
-   symbol list;
    vector<string> scope_res;
    Token backup;
-   size_t mLoc;
 
 protected:
+   symbol list;
+   assembly code;
    string sfile;
+   size_t mLoc, aLoc;
 
 public:
    SymbolTable(){
       this->mLoc = 5000;
+      this->aLoc = 1;
       this->scope_res = {"GLOBAL", "INNER", "NESTED"};
    }
    
-   symbol getTable();
    bool error();
    bool exist(symbol, const string&);
-   bool inScope(symbol, const string&, const size_t&);
-   string getScope(const size_t&);
+   
+   bool inScope(const string&, const size_t&);
    string inType(string, string, symbol);
-   string getType(symbol, const string&);
+
+   string getScope(const size_t&);
+   string getType(const string&);
+   symbol getTable();
+   void getInstr(const string&, const size_t&);
+
    void insert(const symbol&, const size_t&);
    void insert(const size_t&, const string&, const string&);
+
    void sprint();
+   Token find(symbol, const string&);
+   Instr& find(assembly, const size_t&);
 };
+
 
 symbol SymbolTable::getTable(){
    return list;
@@ -60,12 +77,33 @@ bool SymbolTable::error(){
    return false;
 }
 
-bool SymbolTable::inScope(symbol temp, const string& l, const size_t& scope_ref){
+void SymbolTable::getInstr(const string& op, const size_t& mLoc){
+   code.push_back({aLoc++, op, mLoc});
+
+   static int i = 0;
+   for (i; i < code.size(); ++i){
+      cout << code[i].addr << " " << code[i].op_code << " " << code[i].mem << endl;
+   }
+}
+
+Instr& SymbolTable::find(assembly temp, const size_t& addr){
+   for (Instr& t : temp){
+      if (t.addr == addr)
+         return t;
+   }
+}
+
+Token SymbolTable::find(symbol temp, const string& l){
    while (!temp.empty()){
       if (temp.front().lex == l)
-         return (temp.front().s_ref <= scope_ref) ? true : false;
+         return temp.front();
       temp.pop();
    }
+   return {0, "", "", 0, "", 0};
+}
+
+bool SymbolTable::inScope(const string& l, const size_t& scope_ref){
+   return (find(list, l).s_ref <= scope_ref) ? true : false;
 }
 
 string SymbolTable::getScope(const size_t& s){
@@ -75,9 +113,9 @@ string SymbolTable::getScope(const size_t& s){
 string SymbolTable::inType(string w, string SAVE_TYPE, symbol table){
    if (w == "IDENTIFIER"){
       if (SAVE_TYPE == ""){
-         SAVE_TYPE = getType(list, lexeme);
+         SAVE_TYPE = getType(lexeme);
       }
-      else if (SAVE_TYPE != getType(list, lexeme)){
+      else if (SAVE_TYPE != getType(lexeme)){
          e.handler(table, sfile, 0, 4);
       }
    }
@@ -94,21 +132,15 @@ string SymbolTable::inType(string w, string SAVE_TYPE, symbol table){
          if (SAVE_TYPE != "float")
             e.handler(table, sfile, 0, 4);
       }
-      else if (SAVE_TYPE != getType(list, lexeme)){
+      else if (SAVE_TYPE != getType(lexeme)){
          e.handler(table, sfile, 0, 4);
       }
    }
    return SAVE_TYPE;
 }
 
-string SymbolTable::getType(symbol temp, const string& l){
-   while (!temp.empty()){
-      if (temp.front().lex == l){
-         return temp.front().typ;
-      }
-      temp.pop();
-   }
-   return "";
+string SymbolTable::getType(const string& l){
+   return find(list, l).typ;
 }
 
 bool SymbolTable::exist(symbol temp, const string& l){
@@ -132,7 +164,7 @@ void SymbolTable::insert(const symbol& table, const size_t& scope_ref){
    else if (!exist(list, lexeme)){ // assignment statement
       e.handler(table, sfile, backup.ln, 2); 
    }
-   else if (!inScope(list, lexeme, scope_ref)){
+   else if (!inScope(lexeme, scope_ref)){
       e.handler(table, sfile, scope_ref, 3);
    }
 }
@@ -142,7 +174,7 @@ void SymbolTable::insert(const size_t& ln, const string& tok, const string& lex)
 }
 
 void SymbolTable::sprint(){
-   system("cls");
+//   system("cls");
    cout << "+----------------------------------------------------------------------------------+\n";
    cout << "|   TOKENS   |   LEXEMES   |    #    |    Memory Location   |   Type   |   Scope   |\n";
    cout << "|------------|-------------|---------|----------------------|----------|-----------|\n";

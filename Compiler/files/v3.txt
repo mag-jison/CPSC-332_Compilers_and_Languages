@@ -4,4 +4,4 @@ begin
 	else
 		a = c
 	endif
-end %
+end

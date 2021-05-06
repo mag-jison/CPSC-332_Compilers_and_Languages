@@ -101,7 +101,6 @@ int main(){
                break;
             case 4:
                system("cls");
-//               a.printAssembly();
                break;
             default:
                prompt(3);

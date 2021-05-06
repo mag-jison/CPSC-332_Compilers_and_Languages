@@ -23,11 +23,11 @@ endif
 begin
 	while (switch) do
 		if voltage > 120 then
-			lights = 8.0;
+			lights = (power + 600.0) * lights;
 		else
 			switch = false; 
 		endif
 	whileend;
 
 	int chao_thay;
-end %
+end

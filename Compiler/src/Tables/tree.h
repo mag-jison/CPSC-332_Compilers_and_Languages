@@ -43,8 +43,8 @@ public:
     T printTree();
     T BFS(Node<T>*);
     T preOrderTraversal(Node<T>*);
-    void storeTree(T, const vector<T>&);
-    void storeTreeRecursive(Node<T>*, Node<T>*, Node<T>*);
+    void makeTree(T, const vector<T>&);
+    void makeTreeRecursive(Node<T>*, Node<T>*, Node<T>*);
 };
 
 template <class T>
@@ -99,17 +99,17 @@ T Tree<T>::preOrderTraversal(Node<T>* curr){
 }
 
 template <class T>
-void Tree<T>::storeTree(T n, const vector<T>& rhs){
+void Tree<T>::makeTree(T n, const vector<T>& rhs){
     Node<T>* curr = new Node<T>(n, rhs);
 
     if (root == nullptr)
         root = curr;
     else
-        storeTreeRecursive(root, root, curr);
+        makeTreeRecursive(root, root, curr);
 }
 
 template <class T>
-void Tree<T>::storeTreeRecursive(Node<T>* curr, Node<T>* prev, Node<T>* key){
+void Tree<T>::makeTreeRecursive(Node<T>* curr, Node<T>* prev, Node<T>* key){
     for (size_t i = 0; i < curr->child.size(); ++i) {
         curr->parent = prev;
         if (curr->child[i] == nullptr)
@@ -119,6 +119,6 @@ void Tree<T>::storeTreeRecursive(Node<T>* curr, Node<T>* prev, Node<T>* key){
             curr->child[i]->value.push_back('~');
         }
         else
-            storeTreeRecursive(curr->child[i], curr, key);
+            makeTreeRecursive(curr->child[i], curr, key);
     }
 }

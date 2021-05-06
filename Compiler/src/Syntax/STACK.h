@@ -243,49 +243,49 @@ bool STACK::parser(symbol w, bool b){
                 case 1:
                     if (on)
                         output << "<S> -> <A>" << endl;
-                    storeTree("S", vector<string> { "A" });
+                    makeTree("S", vector<string> { "A" });
                     cout << setw(20) << " | pop(" << t << "), push(A)";
                     ss.push("A");
                     break;
                 case 2:
                     if (on)
                         output << "<S> -> <D>" << endl;
-                    storeTree("S", vector<string> { "D" });
+                    makeTree("S", vector<string> { "D" });
                     cout << setw(20) << "| pop(" << t << "), push(D)";
                     ss.push("D");
                     break;
                 case 3:
                     if (on)
                         output << "<S> -> <E>" << endl;
-                    storeTree("S", vector<string> { "E" });
+                    makeTree("S", vector<string> { "E" });
                     cout << setw(20) << "| pop(" << t << "), push(E)";
                     ss.push("E");
                     break;
                 case 4:
                     if (on)
                         output << "<S> -> <IF>" << endl;
-                    storeTree("S", vector<string> { "IF" });
+                    makeTree("S", vector<string> { "IF" });
                     cout << setw(20) << "| pop(" << t << "), push(IF)";
                     ss.push("IF");
                     break;
                 case 5:
                     if (on)
                         output << "<S> -> <WHILE>" << endl;
-                    storeTree("S", vector<string> { "WHILE" });
+                    makeTree("S", vector<string> { "WHILE" });
                     cout << setw(20) << "| pop(" << t << "), push(WHILE)";
                     ss.push("WHILE");
                     break;
                 case 6:
                     if (on)
                         output << "<S> -> <BEGIN>" << endl;
-                    storeTree("S", vector<string> { "BEGIN" });
+                    makeTree("S", vector<string> { "BEGIN" });
                     cout << setw(20) << "| pop(" << t << "), push(BEGIN)";
                     ss.push("BEGIN");
                     break;
                 case 7:
                     if (on)
                         output << "<A> -> <ID> = <E>" << endl;
-                    storeTree("A", vector<string> { "ID", "=", "E" });
+                    makeTree("A", vector<string> { "ID", "=", "E" });
                     cout << setw(20) << "| pop(" << t << "), push(E = ID)";
                     ss.push("E");
                     ss.push("=");
@@ -294,7 +294,7 @@ bool STACK::parser(symbol w, bool b){
                 case 8:
                     if (on)
                         output << "<D> -> <TY> <ID> <MORE_IDS> ;" << endl;
-                    storeTree("D", vector<string> { "TY", "ID", "MID", ";" });
+                    makeTree("D", vector<string> { "TY", "ID", "MID", ";" });
                     cout << setw(20) << "| pop(" << t << "), push(; MID ID TY)";
                     ss.push(";");
                     ss.push("MID");
@@ -304,34 +304,34 @@ bool STACK::parser(symbol w, bool b){
                 case 9:
                     if (on)
                         output << "<D> -> <empty>" << endl;
-                    storeTree("D", vector<string> { "empty" });
+                    makeTree("D", vector<string> { "empty" });
                     cout << setw(20) << "| pop(" << t << "), push(empty)";
                     break;
                 case 10:
                     if (on)
                         output << "<TY> -> bool" << endl;
-                    storeTree("TY", vector<string> { "bool" });
+                    makeTree("TY", vector<string> { "bool" });
                     cout << setw(20) << "| pop(" << t << "), push(bool)";
                     ss.push("bool");
                     break;
                 case 11:
                     if (on)
                         output << "<TY> -> int" << endl;
-                    storeTree("TY", vector<string> { "int" });
+                    makeTree("TY", vector<string> { "int" });
                     cout << setw(20) << "| pop(" << t << "), push(int)";
                     ss.push("int");
                     break;
                 case 12:
                     if (on)
                         output << "<TY> -> float" << endl;
-                    storeTree("TY", vector<string> { "float" });
+                    makeTree("TY", vector<string> { "float" });
                     cout << setw(20) << "| pop(" << t << "), push(float)";
                     ss.push("float");
                     break;
                 case 13:
                     if (on)
                         output << "<MORE_IDS> -> , <ID> <MORE_IDS>\n";
-                    storeTree("MID", vector<string> { ",", "ID", "MID" });
+                    makeTree("MID", vector<string> { ",", "ID", "MID" });
                     cout << setw(20) << "| pop(" << t << "), push(MID ID ,)";
                     ss.push("MID");
                     ss.push("ID");
@@ -340,13 +340,13 @@ bool STACK::parser(symbol w, bool b){
                 case 14:
                     if (on)
                         output << "<MORE_IDS> -> <empty>" << endl;
-                    storeTree("MID", vector<string> { "empty" });
+                    makeTree("MID", vector<string> { "empty" });
                     cout << setw(20) << "| pop(" << t << "), push(empty)";
                     break;
                 case 15:
                     if (on)
                         output << "<E> -> <T> <Q>" << endl;
-                    storeTree("E", vector<string> { "T", "E" });
+                    makeTree("E", vector<string> { "T", "E" });
                     cout << setw(20) << "| pop(" << t << "), push(Q T)";
                     ss.push("Q");
                     ss.push("T");
@@ -354,7 +354,7 @@ bool STACK::parser(symbol w, bool b){
                 case 16:
                     if (on)
                         output << "<T> -> <F> <R>" << endl;
-                    storeTree("T", vector<string> { "F", "R" });
+                    makeTree("T", vector<string> { "F", "R" });
                     cout << setw(20) << "| pop(" << t << "), push(R F)";
                     ss.push("R");
                     ss.push("F");
@@ -362,7 +362,7 @@ bool STACK::parser(symbol w, bool b){
                 case 17:
                     if (on)
                         output << "<Q> -> + <T> <Q>" << endl;
-                    storeTree("Q", vector<string> { "+", "T", "Q" });
+                    makeTree("Q", vector<string> { "+", "T", "Q" });
                     cout << setw(20) << "| pop(" << t << "), push(Q T +)";
                     ss.push("Q");
                     ss.push("T");
@@ -371,7 +371,7 @@ bool STACK::parser(symbol w, bool b){
                 case 18:
                     if (on)
                         output << "<Q> -> - <T> <Q>" << endl;
-                    storeTree("Q", vector<string> { "-", "T", "Q" });
+                    makeTree("Q", vector<string> { "-", "T", "Q" });
                     cout << setw(20) << "| pop(" << t << "), push(Q T -)";
                     ss.push("Q");
                     ss.push("T");
@@ -380,13 +380,13 @@ bool STACK::parser(symbol w, bool b){
                 case 19:
                     if (on)
                         output << "<Q> -> <empty>" << endl;
-                    storeTree("Q", vector<string> { "empty" });
+                    makeTree("Q", vector<string> { "empty" });
                     cout << setw(20) << "| pop(" << t << "), push(empty)";
                     break;
                 case 20:
                     if (on)
                         output << "<R> -> * <F> <R>" << endl;
-                    storeTree("R", vector<string> { "*", "F", "R" });
+                    makeTree("R", vector<string> { "*", "F", "R" });
                     cout << setw(20) << "| pop(" << t << "), push(R F *)";
                     ss.push("R");
                     ss.push("F");
@@ -395,7 +395,7 @@ bool STACK::parser(symbol w, bool b){
                 case 21:
                     if (on)
                         output << "<R> -> / <F> <R>" << endl;
-                    storeTree("R", vector<string> { "/", "F", "R" });
+                    makeTree("R", vector<string> { "/", "F", "R" });
                     cout << setw(20) << "| pop(" << t << "), push(R F /)";
                     ss.push("R");
                     ss.push("F");
@@ -404,13 +404,13 @@ bool STACK::parser(symbol w, bool b){
                 case 22:
                     if (on)
                         output << "<R> -> <empty>" << endl;
-                    storeTree("R", vector<string> { "empty" });
+                    makeTree("R", vector<string> { "empty" });
                     cout << setw(20) << "| pop(" << t << "), push(empty)";
                     break;
                 case 23:
                     if (on)
                         output << "<F> -> ( <E> )" << endl;
-                    storeTree("F", vector<string> { "(", "E", ")" });
+                    makeTree("F", vector<string> { "(", "E", ")" });
                     cout << setw(20) << "| pop(" << t << "), push( )E( )";
                     ss.push(")");
                     ss.push("E");
@@ -419,42 +419,42 @@ bool STACK::parser(symbol w, bool b){
                 case 24:
                     if (on)
                         output << "<F> -> <ID>" << endl;
-                    storeTree("F", vector<string> { "ID" });
+                    makeTree("F", vector<string> { "ID" });
                     cout << setw(20) << "| pop(" << t << "), push(ID)";
                     ss.push("ID");
                     break;
                 case 25:
                     if (on)
                         output << "<F> -> <NUM>" << endl;
-                    storeTree("F", vector<string> { "NUM" });
+                    makeTree("F", vector<string> { "NUM" });
                     cout << setw(20) << "| pop(" << t << "), push(NUM)";
                     ss.push("NUM");
                     break;
                 case 26:
                     if (on)
                         output << "<ID> -> " << lexeme << endl;
-                    storeTree("ID", vector<string> { lexeme });
+                    makeTree("ID", vector<string> { lexeme });
                     cout << setw(20) << "| pop(" << t << "), push(" << lexeme << ")";
                     ss.push(lexeme);
                     break;
                 case 27:
                     if (on)
                         output << "<NUM> -> " << lexeme << endl; 
-                    storeTree("NUM", vector<string> { lexeme });
+                    makeTree("NUM", vector<string> { lexeme });
                     cout << setw(20) << "| pop(" << t << "), push(" << lexeme << ")";
                     ss.push(lexeme);
                     break;
                 case 28:
                     if (on)
                         output << "<NUM> -> " << lexeme << endl; 
-                    storeTree("NUM", vector<string> { lexeme });
+                    makeTree("NUM", vector<string> { lexeme });
                     cout << setw(20) << "| pop(" << t << "), push(" << lexeme << ")";
                     ss.push(lexeme);
                     break;
                 case 29:
                     if (on)
                         output << "<IF> -> if <C> then <S> else <S> endif" << endl;
-                    storeTree("IF", vector<string> { "if", "C", "then", "S", "else", "S", "endif" });
+                    makeTree("IF", vector<string> { "if", "C", "then", "S", "else", "S", "endif" });
                     cout << setw(20) << "| pop(" << t << "), push(endif S else S then C if)";
                     ss.push("endif");
                     ss.push("S");
@@ -467,7 +467,7 @@ bool STACK::parser(symbol w, bool b){
                 case 30:
                     if (on)
                         output << "<WHILE> -> while <C> do <S> whileend" << endl;
-                    storeTree("WHILE", vector<string> { "while", "C", "do", "S", "whileend" });
+                    makeTree("WHILE", vector<string> { "while", "C", "do", "S", "whileend" });
                     cout << setw(20) << "| pop(" << t << "), push(whileend S do C while)";
                     ss.push("whileend");
                     ss.push("S");
@@ -478,7 +478,7 @@ bool STACK::parser(symbol w, bool b){
                 case 31:
                     if (on)
                         output << "<BEGIN> -> begin <S> <MS> end" << endl;
-                    storeTree("BEGIN", vector<string> { "begin", "S", "MS", "end" });
+                    makeTree("BEGIN", vector<string> { "begin", "S", "MS", "end" });
                     cout << setw(20) << "| pop(" << t << "), push(end MS S begin)";
                     ss.push("end");
                     ss.push("MS");
@@ -488,7 +488,7 @@ bool STACK::parser(symbol w, bool b){
                 case 32:
                     if (on)
                         output << "<C> -> <E> <B>" << endl;
-                    storeTree("C", vector<string> { "E", "B" });
+                    makeTree("C", vector<string> { "E", "B" });
                     cout << setw(20) << "| pop(" << t << "), push(B E)";
                     ss.push("B");
                     ss.push("E");
@@ -496,7 +496,7 @@ bool STACK::parser(symbol w, bool b){
                 case 33:
                     if (on)
                         output << "<B> -> <RELOP> <E>" << endl;
-                    storeTree("B", vector<string> { "RELOP", "E" });
+                    makeTree("B", vector<string> { "RELOP", "E" });
                     cout << setw(20) << "| pop(" << t << "), push(E RELOP)";
                     ss.push("E");
                     ss.push("RELOP");
@@ -504,13 +504,13 @@ bool STACK::parser(symbol w, bool b){
                 case 34:
                     if (on)
                         output << "<B> -> <empty>" << endl;
-                    storeTree("B", vector<string> { "empty" });
+                    makeTree("B", vector<string> { "empty" });
                     cout << setw(20) << "| pop(" << t << "), push(empty)";
                     break;
                 case 35:
                     if (on)
                         output << "<MS> -> ; <S> <MS>" << endl;
-                    storeTree("MS", vector<string> { ";", "S", "MS" });
+                    makeTree("MS", vector<string> { ";", "S", "MS" });
                     cout << setw(20) << "| pop(" << t << "), push(MS S ;)";
                     ss.push("MS");
                     ss.push("S");
@@ -519,48 +519,48 @@ bool STACK::parser(symbol w, bool b){
                 case 36:
                     if (on)
                         output << "<MS> -> <empty>" << endl;
-                    storeTree("MS", vector<string> { "empty" });
+                    makeTree("MS", vector<string> { "empty" });
                     cout << setw(20) << "| pop(" << t << "), push(empty)";
                     break;
                 case 37:
                     if (on)
                         output << "<RELOP> -> <" << endl;
-                    storeTree("RELOP", vector<string> { "<" });
+                    makeTree("RELOP", vector<string> { "<" });
                     cout << setw(20) << "| pop(" << t << "), push(<)";
                     ss.push("<");
                     break;
                 case 38:
                     if (on)
                         output << "<RELOP> -> <=" << endl;
-                    storeTree("RELOP", vector<string> { "<=" });
+                    makeTree("RELOP", vector<string> { "<=" });
                     cout << setw(20) << "| pop(" << t << "), push(<=)";
                     ss.push("<=");
                     break;
                 case 39:
                     if (on)
                         output << "<RELOP> -> ==" << endl;
-                    storeTree("RELOP", vector<string> { "==" });
+                    makeTree("RELOP", vector<string> { "==" });
                     cout << setw(20) << "| pop(" << t << "), push(==)\n";
                     ss.push("==");
                     break;
                 case 40:
                     if (on)
                         output << "<RELOP> -> <>" << endl;
-                    storeTree("RELOP", vector<string> { "<>" });
+                    makeTree("RELOP", vector<string> { "<>" });
                     cout << setw(20) << "| pop(" << t << "), push(<>)\n";
                     ss.push("<>");
                     break;
                 case 41:
                     if (on)
                         output << "<RELOP> -> >=" << endl;
-                    storeTree("RELOP", vector<string> { ">=" });
+                    makeTree("RELOP", vector<string> { ">=" });
                     cout << setw(20) << "| pop(" << t << "), push(>=)\n";
                     ss.push(">=");
                     break;
                 case 42:
                     if (on)
                         output << "<RELOP> -> >" << endl;
-                    storeTree("RELOP", vector<string> { ">" });
+                    makeTree("RELOP", vector<string> { ">" });
                     cout << setw(20) << "| pop(" << t << "), push(>)\n";
                     ss.push(">");
                     break;

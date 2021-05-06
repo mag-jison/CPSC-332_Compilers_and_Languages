@@ -483,13 +483,52 @@ Token: OPERATOR
 Lexeme: =
 ----------------
 
-Token: REAL
-Lexeme: 8.0
+Token: SEPARATOR
+Lexeme: (
 ----------------
 <E> -> <T> <Q>
 <T> -> <F> <R>
 <F> -> <ID> | <NUM> | ( <E> )
-<NUM> -> 8.0
+<F> -> ( <E> )
+
+Token: IDENTIFIER
+Lexeme: power
+----------------
+<E> -> <T> <Q>
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> power
+<R> -> <empty>
+
+Token: OPERATOR
+Lexeme: +
+----------------
+<Q> -> + <T> <Q> | - <T> <Q> | <empty>
+
+Token: REAL
+Lexeme: 600.0
+----------------
+<T> -> <F> <R>
+<F> -> <ID> | <NUM> | ( <E> )
+<NUM> -> 600.0
+<R> -> <empty>
+<Q> -> <empty>
+
+Token: SEPARATOR
+Lexeme: )
+----------------
+<F> -> )
+
+Token: OPERATOR
+Lexeme: *
+----------------
+<R> -> * <F> <R> | / <F> <R> | <empty>
+
+Token: IDENTIFIER
+Lexeme: lights
+----------------
+<F> -> <ID> | <NUM> | ( <E> )
+<ID> -> lights
 <R> -> <empty>
 <Q> -> <empty>
 

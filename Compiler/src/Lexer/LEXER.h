@@ -166,6 +166,7 @@ bool LEXER::store(){
          }
          q.pop();
       }
+      insert(0, "OPERATOR", "%");
       return true;
    }
    else {

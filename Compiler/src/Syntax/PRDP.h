@@ -3,6 +3,7 @@
 #include <fstream>
 #include <iomanip>
 #include <queue>
+#include <stack>
 #include "../Tables/symbol.h"
 #include "../Tables/error.h"
 #include "../Tables/tree.h"
@@ -24,17 +25,20 @@ enum TERMINAL { SEMI_COLON, COMMA, LPAREN, RPAREN, EQUAL, THEN, ELSE, ENDIF, DO,
 class PRDP : public SymbolTable, public ErrorTable, public Tree<string> {
 private:
     symbol table;
-    Token backup;
+    stack<size_t> jump_stack;
+    Token save, backup;
     bool on;
     ofstream output;
+    char OP;
     string CURR_TYPE, SAVE_TYPE;
-    size_t CURR_SCOPE;
+    size_t CURR_SCOPE, CURR_ADDR;
 
 public:
     PRDP(string f){
         efile = f;
         sfile = f;
         CURR_SCOPE = 0;
+        CURR_ADDR = 0;
         CURR_TYPE = "";
         SAVE_TYPE = "";
     }
@@ -43,6 +47,7 @@ public:
     void copy(symbol&);
     void lexer();
     void viewTable();
+    void backPatch(const size_t&);
 
     void printRules(NONTERMINAL);
     void printRules(TERMINAL);
@@ -73,6 +78,12 @@ public:
     bool S();
     bool T();
 };
+
+void PRDP::backPatch(const size_t& jump_addr){
+    jump_stack.pop();
+    CURR_ADDR = jump_stack.top();
+    find(code, CURR_ADDR).mem = jump_addr;
+}
 
 void PRDP::getTree(){
     cout << "+--Parse Tree--+\n\n";
@@ -218,107 +229,107 @@ void PRDP::printRules(NONTERMINAL n){
     if (on){
         switch (n){
             case STATE:
-                storeTree("S", vector<string> { "D", "A", "E", "BEGIN", "WHILE", "IF" });
+                makeTree("S", vector<string> { "D", "A", "E", "BEGIN", "WHILE", "IF" });
                 output << write << "<S> -> <A> | <D> | <E> | <IF> | <WHILE> | <BEGIN>" << endl;
                 break;
             case IS:
-                storeTree("IF", vector<string> { "if", "C", "then", "else", "S", "endif" });
+                makeTree("IF", vector<string> { "if", "C", "then", "else", "S", "endif" });
                 output << "<IF> -> if <C> then <S> else <S> endif" << endl;
                 break;
             case COND:
-                storeTree("C", vector<string> { "E", "B" });
+                makeTree("C", vector<string> { "E", "B" });
                 output << "<C> -> <E> <B>\n" << write;
                 break;
             case COND_PRIME:
-                storeTree("B", vector<string> { "RELOP", "E" });
+                makeTree("B", vector<string> { "RELOP", "E" });
                 output << "<B> -> <RELOP> <E> | <empty>" << endl ;
                 break;
             case RELA:
-                storeTree("RELOP", vector<string> { lexeme });
+                makeTree("RELOP", vector<string> { lexeme });
                 output << write << "<RELOP> -> < | <= | == | <> | >= | >" << endl;
                 break;
             case WS:
-                storeTree("WHILE", vector<string> { "while", "C", "do", "S", "whileend" });
+                makeTree("WHILE", vector<string> { "while", "C", "do", "S", "whileend" });
                 output << "<WHILE> -> while <C> do <S> whileend" << endl;
                 break;
             case BS:
-                storeTree("BEGIN", vector<string> { "begin", "S", "MS", "end" });
+                makeTree("BEGIN", vector<string> { "begin", "S", "MS", "end" });
                 output << "<BEGIN> -> begin <S> <MS> end" << endl;
                 break;
             case MRS:
-                storeTree("MS", vector<string> { ";", "S", "MS" });
+                makeTree("MS", vector<string> { ";", "S", "MS" });
                 output << write << "<MS> -> ; <S> <MS> | <empty>" << endl;
                 break;
             case EXP:
-                storeTree("E", vector<string> { "T", "Q" });
+                makeTree("E", vector<string> { "T", "Q" });
                 output << "<E> -> <T> <Q>" << endl;
                 break;
             case EXP_PRIME:
-                storeTree("Q", vector<string> { lexeme, "T", "Q" });
+                makeTree("Q", vector<string> { lexeme, "T", "Q" });
                 output << write << "<Q> -> + <T> <Q> | - <T> <Q> | <empty>" << endl;
                 break;
             case TERM:
-                storeTree("T", vector<string> { "F", "R" });
+                makeTree("T", vector<string> { "F", "R" });
                 output << "<T> -> <F> <R>" << endl;
                 break;
             case FACTOR_PRIME:
-                storeTree("R", vector<string> { lexeme, "F", "R" });
+                makeTree("R", vector<string> { lexeme, "F", "R" });
                 output << write << "<R> -> * <F> <R> | / <F> <R> | <empty>" << endl;
                 break;
             case FACTOR:
                 if (lexeme == "(")
-                    storeTree("F", vector<string> { "(", "E", ")" });
+                    makeTree("F", vector<string> { "(", "E", ")" });
                 else if (NUM())
-                    storeTree("F", vector<string> { "ID" });
+                    makeTree("F", vector<string> { "ID" });
                 else
-                    storeTree("F", vector<string> { "NUM" });
+                    makeTree("F", vector<string> { "NUM" });
 
                 output << "<F> -> <ID> | <NUM> | ( <E> )" << endl;
                 break;
             case NUMBER:
-                storeTree("NUM", vector<string> { lexeme });
+                makeTree("NUM", vector<string> { lexeme });
                 output << "<NUM> -> " << lexeme << endl;
                 break;
             case DECLARE:
-                storeTree("D", vector<string> { "TY", "ID", "MID", ";" });
+                makeTree("D", vector<string> { "TY", "ID", "MID", ";" });
                 output << "<D> -> <TY> <ID> <MORE_IDS> ; | <empty>" << endl;
                 break;
             case TYPE:
                 CURR_TYPE = lexeme;
-                storeTree("TY", vector<string> { lexeme });
+                makeTree("TY", vector<string> { lexeme });
                 output << "<TY> -> bool | int | float" << endl;
                 break;
             case IDENTIFIER:
                 insert(table, CURR_SCOPE);
-                storeTree("ID", vector<string> { lexeme });
+                makeTree("ID", vector<string> { lexeme });
                 output << "<ID> -> " << lexeme << endl;
                 break;
             case MORE_ID:
-                storeTree("MID", vector<string> { ",", "ID", "MID" });
+                makeTree("MID", vector<string> { ",", "ID", "MID" });
                 output << write << "<MORE_IDS> -> , <ID> <MORE_IDS> | <empty>" << endl;
                 break;
             case ASSIGN:
-                storeTree("A", vector<string> { "ID", "=", "E", ";" });
+                makeTree("A", vector<string> { "ID", "=", "E", ";" });
                 output << "<A> -> <ID> = <E> ;" << endl;
                 break;
             case MSE:
-                storeTree("MS", vector<string> { "empty" });
+                makeTree("MS", vector<string> { "empty" });
                 output << "<MS> -> <empty>" << endl;
                 break;
             case ME:
-                storeTree("MID", vector<string> { "empty" });
+                makeTree("MID", vector<string> { "empty" });
                 output << "<MORE_IDS> -> <empty>" << endl;
                 break;
             case QE:
-                storeTree("Q", vector<string> { "empty" });
+                makeTree("Q", vector<string> { "empty" });
                 output << "<Q> -> <empty>" << endl;
                 break;
             case RE:
-                storeTree("R", vector<string> { "empty" });
+                makeTree("R", vector<string> { "empty" });
                 output << "<R> -> <empty>" << endl;
                 break;
             case BE:
-                storeTree("B", vector<string> { "empty" });
+                makeTree("B", vector<string> { "empty" });
                 output << "<B> -> <empty>" << endl;
                 break;
             default:
@@ -336,6 +347,7 @@ bool PRDP::S() {
 bool PRDP::IF() {
     if (FIRST(IS)){
         CURR_SCOPE++;
+        CURR_ADDR = aLoc;
         printRules(IS);
         lexer();
         if (FIRST(COND)){
@@ -346,7 +358,7 @@ bool PRDP::IF() {
                 if (FIRST(STATE)){
                     S();
                     if (lexeme == "else"){
-                        printRules(ELSE); 
+                        printRules(ELSE);
                         lexer();
                         if (FIRST(STATE)){
                             S();
@@ -417,10 +429,25 @@ bool PRDP::B(){
     if (FIRST(RELA)){
         RELOP();
         printRules(RELA);
+        OP = lexeme[0];
         lexer();
         if (FIRST(EXP)){
             printRules(id);
             E();
+            switch (OP){
+                case '<':
+                    getInstr("LES", 0);
+                    jump_stack.push(aLoc);
+                    getInstr("JUMPZ", 0);
+                    break;
+                case '>':
+                    getInstr("GRT", 0);
+                    jump_stack.push(aLoc);
+                    getInstr("JUMPZ", 0);
+                    break;
+                default:
+                    break;
+            }
             return true;
         }
         else {
@@ -437,6 +464,8 @@ bool PRDP::B(){
 bool PRDP::WHILE(){
     if (FIRST(WS)){
         CURR_SCOPE++;
+        CURR_ADDR = aLoc;
+        getInstr("LABEL", 0);
         printRules(WS);
         lexer();
         if (FIRST(COND)){
@@ -446,6 +475,8 @@ bool PRDP::WHILE(){
                 lexer();
                 if (FIRST(STATE)){
                     S();
+                    getInstr("JUMP", CURR_ADDR);
+                    backPatch(aLoc);
                     if (lexeme == "whileend"){
                         CURR_SCOPE--;
                         printRules(WHILEEND);
@@ -550,6 +581,7 @@ bool PRDP::Q(){
         if (FIRST(TERM)) {
             printRules(id);
             T();
+            getInstr("ADD", find(getTable(), save.lex).mem);
             if (FIRST(EXP_PRIME)){
                 Q();
                 return true;
@@ -589,6 +621,7 @@ bool PRDP::R(){
         if (FIRST(FACTOR)){
             printRules(id);
             F();
+            getInstr("MUL", 0);
             if (FIRST(FACTOR_PRIME)){
                 R();
                 return true;
@@ -631,6 +664,7 @@ bool PRDP::F(){
     else if (FIRST(IDENTIFIER)){
         printRules(IDENTIFIER);
         SAVE_TYPE = inType("IDENTIFIER", SAVE_TYPE, table);
+        getInstr("PUSHM", find(getTable(), save.lex).mem);
         lexer();
         return true;
     }
@@ -716,10 +750,11 @@ bool PRDP::MID(){
 
 bool PRDP::A(){
     if (FIRST(IDENTIFIER)){
+        save = table.front();
         if (next_lexeme(table) == "="){
             printRules(ASSIGN);
             printRules(IDENTIFIER);
-            SAVE_TYPE = getType(getTable(), lexeme);
+            SAVE_TYPE = getType(lexeme);
             lexer();
             printRules(EQUAL);
             lexer();
@@ -730,7 +765,8 @@ bool PRDP::A(){
                     printRules(SEMI_COLON); 
                     lexer();
                 }
-                SAVE_TYPE = ""; 
+                SAVE_TYPE = "";
+                getInstr("POPM", find(getTable(), save.lex).mem); 
                 return true;
             }
             else {
@@ -745,7 +781,7 @@ bool PRDP::A(){
         return false;
 }
 
-void PRDP::lexer() {
+void PRDP::lexer(){
     backup = table.front();
     table.pop();
 }
