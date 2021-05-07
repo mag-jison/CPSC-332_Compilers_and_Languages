@@ -1,7 +1,0 @@
-int a, b, c;
-
-if a < b then
-	a = c;
-else
-	a = b;
-endif

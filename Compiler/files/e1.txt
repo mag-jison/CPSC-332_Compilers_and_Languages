@@ -1,2 +1,0 @@
-int _money = $100;
-float var = 5..0;
