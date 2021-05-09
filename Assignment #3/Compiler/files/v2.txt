@@ -1,0 +1,33 @@
+! multiple declaration statement !
+
+int voltage, current;
+bool true, false, switch;
+float lights, power;
+
+voltage = 130;
+current = 0;
+true = 1;
+false = 0;
+switch = true;
+
+if voltage > current then
+	begin
+		while voltage > 50 do
+			bool temp, temp2;
+		whileend;
+	end
+else
+	switch = false;
+endif
+
+begin
+	while (switch) do
+		if voltage > 120 then
+			lights = (power + 600.0) * lights;
+		else
+			switch = false; 
+		endif
+	whileend;
+
+	int chao_thay;
+end
