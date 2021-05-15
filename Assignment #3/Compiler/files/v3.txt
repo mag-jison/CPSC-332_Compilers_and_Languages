@@ -1,5 +1,0 @@
-if a > b then
-	a = b
-else
-	a = c
-endif
