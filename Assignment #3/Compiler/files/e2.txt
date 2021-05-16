@@ -1,0 +1,24 @@
+! integer a is declared twice !
+! variables alpha, sigma, del, rol and beta are not defined !
+! missing RPAREN after 'beta' !
+! floating value 'd' is out of scope !
+! otherwise is not declared and should be replaced by 'else' !
+
+int a, b, c;
+int a;
+
+begin
+	if a > 3 then
+		alpha = sigma * ((del - rol) / beta;
+	else
+		float d;
+	endif;
+end 
+
+a = 45 + d;
+
+if (a*b)>(a+b) then
+	c = c-1
+otherwise
+	c = c*1
+end
