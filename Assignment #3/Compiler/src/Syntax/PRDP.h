@@ -34,13 +34,11 @@ private:
     size_t CURR_SCOPE, SAVE_ADDR; // keeps track of the scope value of the current identifier
 
 public:
-    PRDP(string f){
+    PRDP(string f)
+	: CURR_SCOPE(0), SAVE_ADDR(0)
+    {
         efile = f; // initializes the file-name in the ErrorTable whenever an error occurs
         sfile = f; // initializes the file-name in the SymbolTable whenever an error occurs
-        CURR_SCOPE = 0;
-        SAVE_ADDR = 0;
-        CURR_TYPE = "";
-        SAVE_TYPE = "";
     }
 
     string next_lexeme(symbol);  // returns the next lexeme without disturbing the queue data structure
@@ -764,26 +762,26 @@ bool PRDP::MID(){
 	printRules(MORE_ID);
 	lexer();
 	if (FIRST(IDENTIFIER)){
-        type = CURR_TYPE;
-        printRules(id);
+       		type = CURR_TYPE;
+       		printRules(id);
 		printRules(IDENTIFIER);
 		lexer();
-        if (FIRST(MORE_ID))
-    		MID();
-        else if (FOLLOW(MORE_ID)){
-            printRules(ME);
-            printRules(COMMA);
-            lexer();
-            return true;
-        }
-        else {
-            printRules(ME);
-            return true;
-        }
+       		if (FIRST(MORE_ID))
+    			MID();
+        	else if (FOLLOW(MORE_ID)){
+            		printRules(ME);
+            		printRules(COMMA);
+            		lexer();
+            		return true;
+        	}
+        	else {
+            		printRules(ME);
+            		return true;
+        	}
 	}
 	else {
-        handler(backup, "<ID>");
-        return false;
+        	handler(backup, "<ID>");
+        	return false;
 	}
 }
 
